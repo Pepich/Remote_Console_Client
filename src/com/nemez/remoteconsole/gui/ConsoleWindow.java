@@ -178,6 +178,7 @@ public class ConsoleWindow
 	
 	public static void writeLine(String s)
 	{
+		if (s == null) return;
 		if (s.startsWith("Enabled auto read") || s.startsWith("Disabled auto read"))
 		{
 			return;
