@@ -531,7 +531,12 @@ public class ConsoleWindow
 		{
 			e.printStackTrace();
 		}
-		scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
+		try
+		{
+			scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
+		}
+		catch (NullPointerException e)
+		{}
 	}
 	
 	private static void addWord(String word, Color color, boolean italics, boolean strikethrough, boolean underline,
