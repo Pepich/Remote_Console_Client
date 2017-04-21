@@ -10,7 +10,27 @@ public class RemoteConsole
 	public static void main(String[] args)
 	{
 		ConsoleWindow.initialize();
-		handler = ConnectionHandler.getInstance("redstoner.com", 9000);
+		String ip = "redstoner.com";
+		int port = 9000;
+		String[] params;
+		if (args.length == 1)
+			params = args[0].split(":");
+		else
+			params = args;
+		if (params.length == 2)
+		{
+			ip = params[0];
+			try
+			{
+				port = Integer.parseInt(params[1]);
+			}
+			catch (NumberFormatException e)
+			{
+				ip = "redstoner.com";
+				port = 9000;
+			}
+		}
+		handler = ConnectionHandler.getInstance(ip, port);
 		handler.addListener(new Listener());
 		handler.start();
 		System.out.println("RemoteConsoleGUI initialized.");

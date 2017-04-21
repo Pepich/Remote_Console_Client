@@ -113,14 +113,14 @@ public class ConnectionHandler extends Thread
 								notifyListeners(input);
 							else
 								notifyListeners("MSG: Unknown input: " + input);
-							disconnect("An unexpected error occured. Disconnecting...");
+							disconnect("An unexpected error occured in state 0. Disconnecting...");
 						}
 						break;
 					}
 					catch (IOException | ClassNotFoundException e)
 					{
 						notifyListeners("MSG: [0;31;22m[ERROR]: " + e.getMessage());
-						disconnect("An unexpected error occured. Disconnecting...");
+						disconnect("An unexpected error occured in state 0. Disconnecting...");
 					}
 					break;
 				case 1:
@@ -143,14 +143,14 @@ public class ConnectionHandler extends Thread
 								notifyListeners(input);
 							else
 								notifyListeners("MSG: Unknown input: " + input);
-							disconnect("An unexpected error occured. Disconnecting...");
+							disconnect("An unexpected error occured in state 1. Disconnecting...");
 						}
 						break;
 					}
 					catch (IOException | IllegalBlockSizeException | ClassNotFoundException e)
 					{
 						notifyListeners("MSG: [0;31;22m[ERROR]: " + e.getMessage());
-						disconnect("An unexpected error occured. Disconnecting...");
+						disconnect("An unexpected error occured in state 1. Disconnecting...");
 					}
 				case 2:
 					try
@@ -166,7 +166,7 @@ public class ConnectionHandler extends Thread
 								notifyListeners(input);
 							else
 								notifyListeners("MSG: Unknown input: " + input);
-							disconnect("An unexpected error occured. Disconnecting...");
+							disconnect("An unexpected error occured in state 2. Disconnecting...");
 						}
 						break;
 					}
@@ -175,7 +175,7 @@ public class ConnectionHandler extends Thread
 							| NoSuchPaddingException e)
 					{
 						notifyListeners("MSG: [0;31;22m[ERROR]: " + e.getMessage());
-						disconnect("An unexpected error occured. Disconnecting...");
+						disconnect("An unexpected error occured in state 2. Disconnecting...");
 					}
 				case 3:
 					try
@@ -204,7 +204,7 @@ public class ConnectionHandler extends Thread
 								notifyListeners(input);
 							else
 								notifyListeners("MSG: Unknown input: " + input);
-							disconnect("An unexpected error occured. Disconnecting...");
+							disconnect("An unexpected error occured in state 3. Disconnecting...");
 						}
 						break;
 					}
@@ -213,7 +213,7 @@ public class ConnectionHandler extends Thread
 							| BadPaddingException e)
 					{
 						notifyListeners("MSG: [0;31;22m[ERROR]: " + e.getMessage());
-						disconnect("An unexpected error occured. Disconnecting...");
+						disconnect("An unexpected error occured in state 3. Disconnecting...");
 					}
 				case 4:
 					try
@@ -235,7 +235,7 @@ public class ConnectionHandler extends Thread
 								notifyListeners(input);
 							else
 								notifyListeners("MSG: Unknown input: " + input);
-							disconnect("An unexpected error occured. Disconnecting...");
+							disconnect("An unexpected error occured in state 4. Disconnecting...");
 						}
 						objOut.flush();
 						input = (String) ((SealedObject) objIn.readObject()).getObject(ciphers.getNextAESDecode());
@@ -257,7 +257,7 @@ public class ConnectionHandler extends Thread
 								notifyListeners(input);
 							else
 								notifyListeners("MSG: Unknown input: " + input);
-							disconnect("An unexpected error occured. Disconnecting...");
+							disconnect("An unexpected error occured in state 4. Disconnecting...");
 						}
 						break;
 					}
@@ -266,7 +266,7 @@ public class ConnectionHandler extends Thread
 							| BadPaddingException e)
 					{
 						notifyListeners("MSG: [0;31;22m[ERROR]: " + e.getMessage());
-						disconnect("An unexpected error occured. Disconnecting...");
+						disconnect("An unexpected error occured in state 4. Disconnecting...");
 					}
 				case 5:
 					try
@@ -285,7 +285,7 @@ public class ConnectionHandler extends Thread
 								notifyListeners(input);
 							else
 								notifyListeners("MSG: Unknown input: " + input);
-							disconnect("An unexpected error occured. Disconnecting...");
+							disconnect("An unexpected error occured in state 5. Disconnecting...");
 						}
 						break;
 					}
@@ -294,7 +294,7 @@ public class ConnectionHandler extends Thread
 							| BadPaddingException e)
 					{
 						notifyListeners("MSG: [0;31;22m[ERROR]: " + e.getMessage());
-						disconnect("An unexpected error occured. Disconnecting...");
+						disconnect("An unexpected error occured in state 5. Disconnecting...");
 					}
 				case 14:
 					try
@@ -313,7 +313,7 @@ public class ConnectionHandler extends Thread
 								notifyListeners(input);
 							else
 								notifyListeners("MSG: Unknown input: " + input);
-							disconnect("An unexpected error occured. Disconnecting...");
+							disconnect("An unexpected error occured in state 14. Disconnecting...");
 						}
 						break;
 					}
@@ -322,7 +322,7 @@ public class ConnectionHandler extends Thread
 							| BadPaddingException e)
 					{
 						notifyListeners("MSG: [0;31;22m[ERROR]: " + e.getMessage());
-						disconnect("An unexpected error occured. Disconnecting...");
+						disconnect("An unexpected error occured in state 14. Disconnecting...");
 					}
 			}
 		}
