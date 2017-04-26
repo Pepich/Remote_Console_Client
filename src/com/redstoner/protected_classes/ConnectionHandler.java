@@ -34,6 +34,7 @@ public class ConnectionHandler extends Thread
 		{
 			Ciphers.initRSA();
 			ciphers = new Ciphers();
+			System.out.println("Opening socket to " + host + ":" + port);
 			socket = new Socket(host, port);
 			objIn = new ObjectInputStream(socket.getInputStream());
 			objOut = new ObjectOutputStream(socket.getOutputStream());
@@ -212,6 +213,7 @@ public class ConnectionHandler extends Thread
 							| NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException
 							| BadPaddingException e)
 					{
+						e.printStackTrace();
 						notifyListeners("MSG: [0;31;22m[ERROR]: " + e.getMessage());
 						disconnect("An unexpected error occured in state 3. Disconnecting...");
 					}
@@ -265,6 +267,7 @@ public class ConnectionHandler extends Thread
 							| NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException
 							| BadPaddingException e)
 					{
+						e.printStackTrace();
 						notifyListeners("MSG: [0;31;22m[ERROR]: " + e.getMessage());
 						disconnect("An unexpected error occured in state 4. Disconnecting...");
 					}
@@ -307,6 +310,12 @@ public class ConnectionHandler extends Thread
 							status = 6;
 						else if (input.equals("SRV-REQ-AUT"))
 							status = 4;
+						else if (input.equals("SRV-REQ-PWO"))
+						{
+							status = 6;
+							objOut.writeObject(new SealedObject(getPWO(), ciphers.getNextAESEncode()));
+							objOut.flush();
+						}
 						else
 						{
 							if (input.startsWith("MSG: "))
